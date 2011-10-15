@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript">
+var time1;  
+var bytesLoaded = 0;  
+function test() 
+{
+    var d = new Date;
+    time1 = d.getTime();
+
+	$.ajax({
+        type: "GET",
+        url: "/getnews",
+        dataType: "xml",
+		success: function ( data ) {
+            //data.bufferedAmount
+            var kilobytesLoaded = 131;
+
+			var d = new Date;
+			var time = Math.round((d.getTime()-time1)/10)/100;
+			var connSpeed = Math.round(kilobytesLoaded/time);
+
+            //alert("Total time: \t\t\t"+time+" second");
+
+			alert("Total time: \t\t\t"+time+" second"+
+			"\nTotal Kbytes: \t\t\t"+kilobytesLoaded+" kbytes"+
+			"\nConnection speed: \t"+connSpeed+" kBps");
+
+		}
+	
+		})
+
+
+}
+</script>
+ 
+</head>
+	<body>
+		<button onclick="test()">Test</button>
+		<!--<div id="progress" style="width:200px; border:thin solid black; overflow:scroll; height:200px;"></div>-->
+	</body>
+</html>
