@@ -37,6 +37,7 @@ class MainHandler(webapp.RequestHandler):
 def main():
     application = webapp.WSGIApplication(
         [('/', MainHandler),
+        (r"/echo", newshandler.Echo),
         (r"/newsloader", newshandler.LoadNewsHandler),
         (r"/loadnewsform", newshandler.LoadNewsFormHandler),
         (r"/news", newshandler.NewsHandler),

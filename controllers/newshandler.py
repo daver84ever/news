@@ -7,6 +7,7 @@ import datetime
 import urllib
 import logging
 import wsgiref.handlers
+import cgi
 
 from models.newsmodel import *
 
@@ -55,7 +56,8 @@ class GetNewsHandler(webapp.RequestHandler):
         self.response.out.write(out)
 
     def post(self):
-        out = todaysNews()
+        headline = self.request.get("headline")
+        out = "No News for you "+headline #todaysNews()
         self.response.out.write(out) 
 
 def todaysNews():
@@ -91,7 +93,9 @@ def todaysNews():
     out = doc.toxml()
     return out
             
-        
+class Echo(webapp.RequestHandler):
+    def post(self):
+        self.response.out.write("echo")
 
 class LoadNewsHandler(webapp.RequestHandler):
     def post(self):
@@ -109,7 +113,7 @@ class LoadNewsHandler(webapp.RequestHandler):
         #self.response.out.write(_headline)
         #self.response.out.write(_content)
         self.redirect('/news')
-    
+
 class LoadNewsFormHandler(webapp.RequestHandler):
     def get(self):
         upload_url = '/newsloader' #blobstore.create_upload_url('/upload')
