@@ -1,1 +1,2 @@
-Very simple news store and delivery app (exports format as xml) developed on google appengine.
+Very simple news store and delivery app (exports format as xml) developed on google appengine. 
+(Primarily a simple test case to get something working with google appengine)
